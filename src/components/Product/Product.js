@@ -1,8 +1,13 @@
 import styles from './Product.module.scss';
-import clsx from 'clsx';
-import Button from '../Button/Button';
+//import clsx from 'clsx';
+//import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+//import OptionColor from '../OptionColor/OptionColor';
+//import OptionSize from '../OptionSize/OptionSize';
+import ProductImage from '../ProductImage/ProductImage';
+import ProductForm from '../ProductForm/ProductForm';
+
 
 const Product = props => {
   //console.log('props', Product);
@@ -13,73 +18,39 @@ const Product = props => {
   console.log('!Size', currentSize);
   console.log('!Color', currentColor);
   console.log('!Price', currentPrice);
+  console.log(setCurrentColor);
+  console.log(setCurrentSize);
 
 
-
-  const prepareColorClassName = color => {
-    return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
-  }
-  //console.log('!color', prepareColorClassName)
+  
 
   const getCurrentPrice = price => {
     return setCurrentPrice(props.basePrice + price);
   }
-  //console.log('!setCurrentPrice', setCurrentPrice);
+  console.log('!setCurrentPrice', getCurrentPrice);
   
   
 
-  const addToCart = props => {
-    return console.log ('Summary')
+  const addToCart = () => {
+    const BasketCard = {
+      name: props.title,
+      color: currentColor,
+      size: currentSize,
+      price: currentPrice
+    }
+    console.log ('Sumarry', BasketCard);
   }
+ 
 
   return (
     <article className={styles.product}>
-      <div className={styles.imageContainer}>
-        <img 
-          className={styles.image}
-          alt={props.title}
-          src={`${process.env.PUBLIC_URL}/images/products/shirt-${props.name}--${currentColor}.jpg`} />
-      </div>
+        <ProductImage name={props.name} currentColor={currentColor}/>
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
           <span className={styles.price}>Price: {currentPrice}$</span>
         </header>
-        <form>
-          <div className={styles.sizes}>
-            <h3 className={styles.optionLabel}>Sizes</h3>
-            <ul className={styles.choices}>
-              {props.sizes.map((size, index)=>
-                <li key={index}>
-                  <button type='button' onClick={() =>{
-                    setCurrentSize(size.name);
-                    getCurrentPrice(size.additionalPrice); 
-                    console.log('!size', setCurrentSize);
-                    console.log('price', getCurrentPrice)
-                  }}
-                  className={clsx(size.name === currentSize && styles.active)}>{size.name}</button>
-                </li>
-              )}
-            </ul>
-          </div>
-          <div className={styles.colors}>
-            <h3 className={styles.optionLabel}>Colors</h3>
-            <ul className={styles.choices}>
-              {props.colors.map((item) =>
-                <li key={item}>
-                  <button type="button" onClick={() => setCurrentColor(item)} className={clsx(prepareColorClassName(item), item === currentColor && styles.active)}/>
-                </li>
-              )}
-            </ul>
-          </div>
-          <Button className={styles.button} 
-            onClick={(e) => {
-              e.preventDefault();
-              addToCart(props);
-            }}>
-            <span className="fa fa-shopping-cart" />
-          </Button>
-        </form>
+        <ProductForm currentSize={currentSize} setCurrentSize={setCurrentSize} getCurrentPrice={getCurrentPrice} sizes={props.sizes} currentColor={currentColor} setCurrentColor={setCurrentColor} color={props.color} addToCart={addToCart} title={props.title} currentPrice={currentPrice} setCurrentPrice={setCurrentPrice}/>
       </div>
     </article>
   )
@@ -89,14 +60,14 @@ const Product = props => {
 Product.propTypes = {
 
   title: PropTypes.string.isRequired,
-  basePrice: PropTypes.number,
-  colors: PropTypes.arrayOf(PropTypes.string),
+  basePrice: PropTypes.number.isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   sizes: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     additionalPrice: PropTypes.number
-  })),
-  id: PropTypes.number,
-  name: PropTypes.string
+  })).isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired
 }
 
 export default Product;
