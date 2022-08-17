@@ -27,7 +27,7 @@ OptionSize.propTypes = {
     currentColor: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string,
         additionalPrice: PropTypes.number
-      })).isRequired,
+      })),
   };
 
 export default OptionSize

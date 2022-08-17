@@ -17,8 +17,8 @@ const addToCart = props => {
   const ProductForm = props => {
     return (
         <from>
-            <OptionColor currentColor={props.currentColor} setCurrentColor={props.setCurrentColor} color={props.color}/>
             <OptionSize currentSize={props.currentSize} setCurrentSize={props.setCurrentSize} getCurrentPrice={props.getCurrentPrice} sizes={props.sizes}/>
+            <OptionColor currentColor={props.currentColor} setCurrentColor={props.setCurrentColor}/>
             <Button className={styles.button} 
                 onClick={(e) => {
                     e.preventDefault();
@@ -34,14 +34,15 @@ const addToCart = props => {
   ProductForm.propTypes = {
 
     title: PropTypes.string.isRequired,
-    basePrice: PropTypes.number.isRequired,
-    colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    basePrice: PropTypes.number,
+    colors: PropTypes.arrayOf(PropTypes.string),
     sizes: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       additionalPrice: PropTypes.number
     })).isRequired,
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired
+    id: PropTypes.number,
+    name: PropTypes.string
   }
+  
 
   export default ProductForm

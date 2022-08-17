@@ -26,6 +26,8 @@ const prepareColorClassName = color => {
 
   OptionColor.propTypes = {
     currentColor: PropTypes.string.isRequired,
+    setCurrentColor: PropTypes.func.isRequired,
+    colors: PropTypes.array.isRequired
   };
 
   export default OptionColor

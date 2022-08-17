@@ -15,11 +15,11 @@ const Product = props => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
   const [currentPrice, setCurrentPrice] = useState(props.basePrice);
-  console.log('!Size', currentSize);
+  /*console.log('!Size', currentSize);
   console.log('!Color', currentColor);
   console.log('!Price', currentPrice);
   console.log(setCurrentColor);
-  console.log(setCurrentSize);
+  console.log(setCurrentSize);*/
 
 
   
@@ -27,7 +27,7 @@ const Product = props => {
   const getCurrentPrice = price => {
     return setCurrentPrice(props.basePrice + price);
   }
-  console.log('!setCurrentPrice', getCurrentPrice);
+  //console.log('!setCurrentPrice', getCurrentPrice);
   
   
 
@@ -69,5 +69,6 @@ Product.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired
 }
+
 
 export default Product;
