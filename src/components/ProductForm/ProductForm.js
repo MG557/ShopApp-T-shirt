@@ -4,7 +4,7 @@ import OptionSize from '../OptionSize/OptionSize';
 import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 
-const addToCart = props => {
+const addToCart = (props) => {
     const BasketCard = {
       name: props.title,
       color: props.currentColor,
@@ -14,35 +14,35 @@ const addToCart = props => {
     console.log ('Sumarry', BasketCard)
   }
 
-  const ProductForm = props => {
+  const ProductForm = (props) => {
     return (
         <from>
             <OptionSize currentSize={props.currentSize} setCurrentSize={props.setCurrentSize} getCurrentPrice={props.getCurrentPrice} sizes={props.sizes}/>
-            <OptionColor currentColor={props.currentColor} setCurrentColor={props.setCurrentColor}/>
+            <OptionColor currentColor={props.currentColor} setCurrentColor={props.setCurrentColor} color={props.color}/>
             <Button className={styles.button} 
                 onClick={(e) => {
                     e.preventDefault();
-                    addToCart();
+                    addToCart(props);
                 }}>
                 <span className="fa fa-shopping-cart" />
             </Button>
         </from>
     )
   }
- // console.log('## OptColor', OptionColor);
+ //console.log('## OptColor', OptionColor);
 
   ProductForm.propTypes = {
-
     title: PropTypes.string.isRequired,
-    basePrice: PropTypes.number,
-    colors: PropTypes.arrayOf(PropTypes.string),
+    currentSize: PropTypes.string.isRequired,
+    currentColor: PropTypes.string.isRequired,
+    color: PropTypes.arrayOf(PropTypes.string).isRequired,
     sizes: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       additionalPrice: PropTypes.number
     })).isRequired,
-    id: PropTypes.number,
-    name: PropTypes.string
   }
+    
+  
   
 
   export default ProductForm

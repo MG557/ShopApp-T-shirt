@@ -9,7 +9,7 @@ import ProductImage from '../ProductImage/ProductImage';
 import ProductForm from '../ProductForm/ProductForm';
 
 
-const Product = props => {
+const Product = (props) => {
   //console.log('props', Product);
 
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
@@ -20,11 +20,8 @@ const Product = props => {
   console.log('!Price', currentPrice);
   console.log(setCurrentColor);
   console.log(setCurrentSize);*/
-
-
-  
-
-  const getCurrentPrice = price => {
+ 
+  const getCurrentPrice = (price) => {
     return setCurrentPrice(props.basePrice + price);
   }
   //console.log('!setCurrentPrice', getCurrentPrice);
@@ -38,7 +35,7 @@ const Product = props => {
       size: currentSize,
       price: currentPrice
     }
-    console.log ('Sumarry', BasketCard);
+    console.log('Sumarry', BasketCard);
   }
  
 
@@ -50,25 +47,22 @@ const Product = props => {
           <h2 className={styles.name}>{props.title}</h2>
           <span className={styles.price}>Price: {currentPrice}$</span>
         </header>
-        <ProductForm currentSize={currentSize} setCurrentSize={setCurrentSize} getCurrentPrice={getCurrentPrice} sizes={props.sizes} currentColor={currentColor} setCurrentColor={setCurrentColor} color={props.color} addToCart={addToCart} title={props.title} currentPrice={currentPrice} setCurrentPrice={setCurrentPrice}/>
+        <ProductForm currentSize={currentSize} setCurrentSize={setCurrentSize} getCurrentPrice={getCurrentPrice} sizes={props.sizes} currentColor={currentColor} setCurrentColor={setCurrentColor}  color={props.colors} addToCart={addToCart} title={props.title} currentPrice={currentPrice} setCurrentPrice={setCurrentPrice}/>
       </div>
     </article>
   )
 };
-
+//console.log('?? ProductFom', ProductForm);
 
 Product.propTypes = {
-
   title: PropTypes.string.isRequired,
   basePrice: PropTypes.number.isRequired,
-  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
   sizes: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     additionalPrice: PropTypes.number
   })).isRequired,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired
-}
-
+};
 
 export default Product;

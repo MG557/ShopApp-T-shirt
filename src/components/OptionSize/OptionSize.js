@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 
-const OptionSize = props => {
+const OptionSize = (props) => {
     return (
         <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
@@ -23,11 +23,13 @@ const OptionSize = props => {
           </div>
     );
 };
+//console.log('optsize', OptionSize);
+
 OptionSize.propTypes = {
-    currentColor: PropTypes.arrayOf(PropTypes.shape({
+    sizes: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string,
         additionalPrice: PropTypes.number
-      })),
+      })).isRequired
   };
 
 export default OptionSize

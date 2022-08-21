@@ -2,7 +2,7 @@ import styles from './ProductImage.module.scss';
 import PropTypes from 'prop-types';
 
 
-const ProductImage = props => {
+const ProductImage = (props) => {
     return (
         <div className={styles.imageContainer}>
         <img 
